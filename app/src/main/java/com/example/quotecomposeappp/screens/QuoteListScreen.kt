@@ -17,7 +17,7 @@ import com.example.quotecomposeappp.models.Quote
 
 
 @Composable
-fun QuoteListScreen(data:Array<Quote>,onClick:()->Unit) {
+fun QuoteListScreen(data:Array<Quote>,onClick:(quote: Quote?)->Unit) {
     Card() {
         Column() {
             Text(
@@ -27,9 +27,7 @@ fun QuoteListScreen(data:Array<Quote>,onClick:()->Unit) {
                     .fillMaxWidth(1f),
                 style = MaterialTheme.typography.titleLarge
             )
-            QuoteList(data=data) {
-                onClick
-            }
+            QuoteList(data=data,onClick)
         }
     }
 }

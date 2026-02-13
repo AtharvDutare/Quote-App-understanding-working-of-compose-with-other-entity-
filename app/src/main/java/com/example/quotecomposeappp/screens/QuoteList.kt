@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.quotecomposeappp.models.Quote
 
 @Composable
-fun QuoteList(data: Array<Quote>, onClick: () -> Unit) {
+fun QuoteList(data: Array<Quote>, onClick: (quote: Quote?) -> Unit) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surface
     ) { paddingValues ->

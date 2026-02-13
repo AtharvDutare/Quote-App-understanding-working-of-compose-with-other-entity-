@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.quotecomposeappp.screens.QuoteDetail
 import com.example.quotecomposeappp.screens.QuoteList
 import com.example.quotecomposeappp.screens.QuoteListScreen
 import com.example.quotecomposeappp.ui.theme.QuoteComposeApppTheme
@@ -35,7 +36,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     if (DataManager.isDataLoaded.value) {
-        QuoteListScreen(DataManager.data, onClick = {})
+        if(DataManager.currentPage.value==Pages.LISTING) {
+            QuoteListScreen(DataManager.data) {
+                DataManager.switchPages(it)
+            }
+        }
+        else {
+            DataManager.currentQuote?.let { QuoteDetail(quote = it) }
+        }
     } else {
         Box(
             contentAlignment = Alignment.Center,
@@ -48,4 +56,9 @@ fun App() {
             )
         }
     }
+}
+
+enum class Pages{
+    LISTING,
+    DETAILS
 }
